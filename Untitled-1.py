@@ -21,8 +21,12 @@ df = df.query('responds_id != ""')
 df["category_id"] = df["category_id"].astype(int)
 df["client_phone"] = df["client_phone"].astype(int)
 df["responds_id"] = df["responds_id"].astype(int)
+df["client_phone"] = df["client_phone"].astype(str)
 df['offer_created_at']= pd.to_datetime(df['offer_created_at'], format='%Y-%m-%d %H:%M:%S')
 df['respond_created_at']= pd.to_datetime(df['respond_created_at'], format='%Y-%m-%d %H:%M:%S')
+
+df['pph'] = df.client_phone.str[:3]
+df = df[~df.pph.str.contains('520')]
 
 # %%
 df = df.sort_values(by=['state', 'offer_id', 'respond_created_at'])
@@ -66,7 +70,7 @@ def time_distribution(diff_time):
 df['time_period'] = df['diff_time'].apply(time_distribution)
 
 # %%
-df = df.drop(['client_phone', 'offer_created_at', 'responds_id', 'offer_id','executor_phone', 'respond_created_at', 'sequence', 'diff_time'], axis=1)
+df = df.drop(['client_phone', 'offer_created_at', 'responds_id', 'offer_id','executor_phone', 'respond_created_at', 'sequence', 'diff_time', 'pph'], axis=1)
 
 # %%
 import numpy as np
