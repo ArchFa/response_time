@@ -119,7 +119,7 @@ selected_sn = col_multi.selectbox(
 col_em.write("")
 col_em.write("")
 col_em.write(
-    f"{selected_sn} содержит {new_df['total_task'].sum()} задач с откликом"
+    f"{selected_sn} содержит {new_df.query('state == @selected_sn').sum()[13]} задач с откликом"
 )
 st.write(new_df.query('state == @selected_sn'))
 
