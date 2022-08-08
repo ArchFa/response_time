@@ -7,7 +7,7 @@ import streamlit as st
 # %%
 st.title("Задачи и распределение первого отклика")
 
-upload_file = "offers_statuses_04_01_08_01.txt.txt"
+upload_file = "offers_responds_06_01_07_01.txt"
 
 df = pd.read_csv(upload_file, sep='|')
 #df = pd.read_csv('/Users/arturfattahov/Downloads/Telegram Desktop/offers_responds_06_01_07_01.txt', sep='|')
