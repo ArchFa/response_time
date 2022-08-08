@@ -7,7 +7,7 @@ import streamlit as st
 # %%
 st.title("Задачи и распределение первого отклика")
 
-upload_file = "offers_responds_06_01_07_01.txt"
+upload_file = "offers_statuses_04_01_08_01.txt.txt"
 
 df = pd.read_csv(upload_file, sep='|')
 #df = pd.read_csv('/Users/arturfattahov/Downloads/Telegram Desktop/offers_responds_06_01_07_01.txt', sep='|')
@@ -69,6 +69,7 @@ def time_distribution(diff_time):
         return 'Более 72 часов'
 df['time_period'] = df['diff_time'].apply(time_distribution)
 
+
 # %%
 df = df.drop(['client_phone', 'offer_created_at', 'responds_id', 'offer_id','executor_phone', 'respond_created_at', 'sequence', 'diff_time', 'pph'], axis=1)
 
@@ -78,6 +79,7 @@ df['count'] = 1
 
 pivot_df = df.pivot_table(index=["state", 'category_id', 'time_period'], values='count', aggfunc='count')
 pivot_df = pivot_df.reset_index()
+
 
 # %%
 df = df.sort_values(by=['state', 'category_id'])
